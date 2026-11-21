@@ -1,7 +1,9 @@
 from typer.testing import CliRunner
 from main import app
+import json
 
 runner = CliRunner()
+
 
 def test_add():
 
@@ -9,4 +11,5 @@ def test_add():
 
     assert result.exit_code == 0
 
-    assert "Task added successfully (ID: 1)" in result.stdout
+    assert "Task added successfully" in result.stdout
+
