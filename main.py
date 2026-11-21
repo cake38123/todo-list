@@ -18,9 +18,9 @@ def usage():
 
 @app.command()
 def add(description: str):
-    typer.echo(f"Added task: {description}")
-    new_task = Task(1, description, Status.IN_PROGRESS, time.time(), time.time())
-    print(repr(new_task))
+    t = Task(1, description, Status.IN_PROGRESS, time.time(), time.time())
+    typer.echo(f"Task added successfully (ID: {t.id})")
+    print(repr(t))
 
 
 if __name__ == "__main__":
