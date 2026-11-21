@@ -9,7 +9,8 @@ print("Welcome to To-Do List")
 
 filename = "data.json"
 """
-data represents the list of tasks stored in the json
+data represents the list of tasks stored in json file named 'data.json'
+data is a list containing dictionaries of each task object
 """
 try:
     with open(filename, "r", encoding="utf-8") as file:
@@ -30,7 +31,14 @@ def usage():
 
 @app.command()
 def add(description: str):
+    # create new task
     t = Task(1, description, Status.IN_PROGRESS, time.time(), time.time())
+    # add new task to list 
+    data.append(t.to_dict())
+    # write to json file
+    with open("data.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
+
     typer.echo(f"Task added successfully (ID: {t.id})")
     print(repr(t))
 

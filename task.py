@@ -5,6 +5,10 @@ class Status(Enum):
     TO_DO = 1
     IN_PROGRESS = 2
     DONE = 3
+    # turns TO_DO into To do
+    def get_label(self) -> str:
+        return self.name.capitalize().replace("_", " ")
+
 
 class Task :
 
@@ -25,6 +29,11 @@ class Task :
         self.createdAt = createdAt
         self.updatedAt = updatedAt
 
+
     # print debugging ouput
     def __repr__(self):
         return f"Task(id='{self.id}', description='{self.description}', status='{self.status}', createdAt='{self.createdAt}', updatedAt='{self.updatedAt}')"
+
+    # convert task object into str
+    def to_dict(self):
+        return {"id": self.id, "description": self.description, "status": self.status.get_label(), "createdAt": self.createdAt, "updatedAt": self.updatedAt}
