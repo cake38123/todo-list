@@ -1,5 +1,5 @@
 import typer
-import time
+from datetime import datetime
 from task import Task
 from task import Status
 import json
@@ -33,7 +33,8 @@ def usage():
 def add(description: str):
     # create new task
     new_id = len(data) + 1
-    t = Task(new_id, description, Status.IN_PROGRESS, time.time(), time.time())
+    created_at = datetime.now()
+    t = Task(new_id, description, Status.IN_PROGRESS, created_at, None)
     # add new task to list 
     data.append(t.to_dict())
     # write to json file
