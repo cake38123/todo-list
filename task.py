@@ -1,4 +1,5 @@
 from enum import Enum
+import datetime
 
 # enum for task status
 class Status(Enum):
@@ -36,4 +37,4 @@ class Task :
 
     # convert task object into str
     def to_dict(self):
-        return {"id": self.id, "description": self.description, "status": self.status.get_label(), "createdAt": self.createdAt, "updatedAt": self.updatedAt}
+        return {"id": self.id, "description": self.description, "status": self.status.get_label(), "createdAt": self.createdAt.strftime("%Y-%m-%d %H:%M:%S"), "updatedAt": self.updatedAt}
