@@ -1,5 +1,5 @@
 import typer
-
+from task import Task
 app = typer.Typer()
 
 print("Welcome to To-Do List")
