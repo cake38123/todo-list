@@ -37,4 +37,4 @@ class Task :
 
     # convert task object into str
     def to_dict(self):
-        return {"id": self.id, "description": self.description, "status": self.status.get_label(), "createdAt": self.createdAt.strftime("%Y-%m-%d %H:%M:%S"), "updatedAt": self.updatedAt}
+        return {"id": self.id, "description": self.description, "status": self.status.get_label(), "createdAt": self.createdAt.strftime("%Y-%m-%d %H:%M:%S"), "updatedAt": self.updatedAt.strftime("%Y-%m-%d %H:%M:%S") if self.updatedAt else "Not yet updated"}
