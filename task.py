@@ -24,3 +24,7 @@ class Task :
         self.status = status
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+
+    # print debugging ouput
+    def __repr__(self):
+        return f"Task(id='{self.id}', description='{self.description}', status='{self.status}', createdAt='{self.createdAt}', updatedAt='{self.updatedAt}')"
