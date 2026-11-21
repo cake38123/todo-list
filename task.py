@@ -1,3 +1,11 @@
+from enum import Enum
+
+# enum for task status
+class Status(Enum):
+    TO_DO = 1
+    IN_PROGRESS = 2
+    DONE = 3
+
 class Task :
 
     """
