@@ -14,5 +14,9 @@ def usage():
     list <task_status>"""
     typer.echo(usage_text)
 
+@app.command()
+def add(description: str):
+    typer.echo(f"Added task: {description}")
+
 if __name__ == "__main__":
     app()
