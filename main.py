@@ -32,7 +32,8 @@ def usage():
 @app.command()
 def add(description: str):
     # create new task
-    t = Task(1, description, Status.IN_PROGRESS, time.time(), time.time())
+    new_id = len(data) + 1
+    t = Task(new_id, description, Status.IN_PROGRESS, time.time(), time.time())
     # add new task to list 
     data.append(t.to_dict())
     # write to json file
