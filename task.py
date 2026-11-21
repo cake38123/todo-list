@@ -30,6 +30,9 @@ class Task :
         self.createdAt = createdAt
         self.updatedAt = updatedAt
 
+    def __str__(self):
+        return f"ID:{self.id}, Description: {self.description}, Status: {self.status.get_label()}"
+
 
     # print debugging ouput
     def __repr__(self):
