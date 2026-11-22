@@ -42,7 +42,18 @@ def add(description: str):
         json.dump(data, f, indent=4)
 
     typer.echo(f"Task added successfully (ID: {t.id})")
-    print(repr(t))
+
+    # debugging output
+    # print(repr(t))
+
+@app.command()
+def list():
+
+    list_text = "\n".join([f"Id:{item["id"]}, Description:{item["description"]}, Status: {item["status"]}" for item in data])
+
+    typer.echo(list_text)
+
+
 
 
 if __name__ == "__main__":
