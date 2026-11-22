@@ -15,5 +15,8 @@ class TaskList:
 
     def add_task(task):
         global data
-        data.append(task);
+        data.append(task)
+        # write to json file
+        with open("data.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
 
