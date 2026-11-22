@@ -13,10 +13,14 @@ class TaskList:
         except (FileNotFoundError, json.JSONDecodeError):
             data = []
 
+    
+
     def add_task(task):
         global data
-        data.append(task)
+        # append and convert
+        data.append(task.to_dict())
         # write to json file
         with open("data.json", "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4)
+
 
