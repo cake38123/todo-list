@@ -3,24 +3,13 @@ import json
 
 class TaskList:
 
-    data = []
-
-    def __init__():
+    def __init__(self, filepath):
         global data
         try:
             with open("data.json", "r", encoding="utf-8") as file:
-                data = json.load(file)
+                self.data = json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
-            data = []
+            self.data = []
 
-    
-
-    def add_task(task):
-        global data
-        # append and convert
-        data.append(task.to_dict())
-        # write to json file
-        with open("data.json", "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=4)
 
 

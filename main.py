@@ -2,22 +2,13 @@ import typer
 from datetime import datetime
 from task import Task
 from task import Status
+from task_list import TaskList
 import json
 app = typer.Typer()
 
 print("Welcome to To-Do List")
 
-filename = "data.json"
-"""
-data represents the list of tasks stored in json file named 'data.json'
-data is a list containing dictionaries of each task object
-"""
-try:
-    with open(filename, "r", encoding="utf-8") as file:
-        data = json.load(file)
-except (FileNotFoundError, json.JSONDecodeError):
-    data = []
-
+tasks = TaskList()
 
 @app.command()
 def usage():
@@ -36,11 +27,7 @@ def add(description: str):
     created_at = datetime.now()
     t = Task(new_id, description, Status.IN_PROGRESS, created_at, None)
     # add new task to list 
-    data.append(t.to_dict())
-    # write to json file
-    with open("data.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
-
+    tasks.add_task(t)
     typer.echo(f"Task added successfully (ID: {t.id})")
 
     # debugging output
