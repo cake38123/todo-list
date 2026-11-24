@@ -51,4 +51,4 @@ class Task :
     # convert dict back to task object
     @classmethod
     def from_dict(cls, data):
-        return cls(id=data["id"], description=data["description"], status=data["status"], createdAt=data["createdAt"], updatedAt=data["updatedAt"])
+        return cls(id=data["id"], description=data["description"], status=Status[data["status"]], createdAt=data["createdAt"], updatedAt=data["updatedAt"])
