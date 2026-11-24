@@ -35,6 +35,8 @@ class TaskList:
 
         # save current task data
         self.save()
+
+        print(f"Task added successfully (ID:{task.id}).")
         
 
     # save method
