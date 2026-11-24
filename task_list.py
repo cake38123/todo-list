@@ -1,4 +1,6 @@
 from task import Task
+from task import Status
+import datetime
 import json
 
 class TaskList:
@@ -18,6 +20,22 @@ class TaskList:
 
     def __str__(self):
         return "\n".join(str(task) for task in self.data)
+
+    def add_task(self, description):
+
+        # new task parameters
+        id = len(self.data) + 1
+        status = Status.TO_DO
+
+        # create new task
+        task = Task(id=id, description=description, status=status, createdAt=None, updatedAt=None)
+
+        # append to task data
+        self.data.append(task)
+
+        # save current task data
+        self.save()
+        
 
     # save method
     def save(self):

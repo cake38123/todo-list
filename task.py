@@ -29,12 +29,12 @@ class Task :
     time:updatedAt - when the task was last updated
 
     """
-    def __init__(self, id, description, status):
+    def __init__(self, id, description, status, createdAt, updatedAt):
         self.id = id
         self.description = description
-        self.status = status
-        self.createdAt = datetime.now()
-        self.updatedAt = None
+        self.status = Status.TO_DO if status is None else status
+        self.createdAt = datetime.now() if createdAt is None else createdAt
+        self.updatedAt = None if createdAt is None else updatedAt
 
     def __str__(self):
         return f"ID:{self.id}, Description: {self.description}, Status: {self.status.get_label()}"
@@ -51,4 +51,4 @@ class Task :
     # convert dict back to task object
     @classmethod
     def from_dict(cls, data):
-        return cls(id=data["id"], description=data["description"], status=Status[data["status"]], createdAt=data["createdAt"], updatedAt=data["updatedAt"])
+        return cls(id=data["id"], description=data["description"], status=Status[data["status"]], createdAt=datetime.strptime(data["createdAt"], "%Y-%m-%d %H:%M:%S"), updatedAt=None if data["updatedAt"] == "Not yet updated" else datetime.strptime(data["updatedAt"], "%Y-%m-%d %H:%M:%S" ))
