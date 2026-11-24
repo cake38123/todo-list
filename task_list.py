@@ -47,7 +47,9 @@ class TaskList:
         with open(self.filepath, "w", encoding="utf-8") as file:
             json.dump(saved_tasks, file, indent=2)
 
-        
+    # size of the list - testing
+    def size(self):
+        return len(self.data)
 
 
 
