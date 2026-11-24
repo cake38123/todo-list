@@ -38,14 +38,14 @@ class TaskList:
 
         print(f"Task added successfully (ID:{task.id}).")
 
-    def update(self, id, description : str):
-
-        for item in self.data:
-            if item.id == id:
-                item.description = description
-                print(f"Task succesfully updated (ID:{id})")
+    def update_task(self, id, description : str):
+        for task in self.data:
+            if id == task.id:
+                task.description = description
+                self.save()
+                print(f"Task successfully updated.")
                 return
-            
+
         print("Task does not exist.")
         
 
