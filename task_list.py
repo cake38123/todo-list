@@ -37,8 +37,20 @@ class TaskList:
         self.save()
 
         print(f"Task added successfully (ID:{task.id}).")
+
+    def update(self, id, description : str):
+
+        for item in self.data:
+            if item.id == id:
+                item.description = description
+                print(f"Task succesfully updated (ID:{id})")
+                return
+            
+        print("Task does not exist.")
         
 
+
+        
     # save method
     def save(self):
 
