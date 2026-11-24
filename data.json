@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1,
+    "description": "coding",
+    "status": "To do",
+    "createdAt": "2026-11-24 15:31:58",
+    "updatedAt": "Not yet updated"
+  }
+]

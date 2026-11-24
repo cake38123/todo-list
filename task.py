@@ -1,5 +1,5 @@
 from enum import Enum
-import datetime
+from datetime import datetime
 
 # enum for task status
 class Status(Enum):
