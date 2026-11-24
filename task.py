@@ -29,12 +29,12 @@ class Task :
     time:updatedAt - when the task was last updated
 
     """
-    def __init__(self, id, description, status, createdAt,  updatedAt):
+    def __init__(self, id, description, status):
         self.id = id
         self.description = description
         self.status = status
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        self.createdAt = datetime.now()
+        self.updatedAt = None
 
     def __str__(self):
         return f"ID:{self.id}, Description: {self.description}, Status: {self.status.get_label()}"
