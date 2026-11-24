@@ -11,6 +11,10 @@ def main():
     add_parser = commands.add_parser("add", help="add <task-description>")
     add_parser.add_argument("description", help="description of the task")
 
+    update_parser = commands.add_parser("update", help="update <id> <new-description>")
+    update_parser.add_argument("id", help="id of task to update")
+    update_parser.add_argument("description", help="new description")
+
     list_parser = commands.add_parser("list", help="list <order-by>?")
 
     args = parser.parse_args()
@@ -21,6 +25,8 @@ def main():
         task_list.add_task(args.description)
     elif args.command == "list":
         print(str(task_list))
+    elif args.command == "update":
+        pass
     
 
 
