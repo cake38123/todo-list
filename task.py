@@ -12,7 +12,7 @@ class Status(Enum):
 
     @classmethod
     def from_label(cls, label: str):
-        name = label.strip().upper.replace(" ", "_")
+        name = label.strip().upper().replace(" ", "_")
         return cls[name]
         
 
@@ -51,4 +51,13 @@ class Task :
     # convert dict back to task object
     @classmethod
     def from_dict(cls, data):
-        return cls(id=data["id"], description=data["description"], status=Status[data["status"]], createdAt=datetime.strptime(data["createdAt"], "%Y-%m-%d %H:%M:%S"), updatedAt=None if data["updatedAt"] == "Not yet updated" else datetime.strptime(data["updatedAt"], "%Y-%m-%d %H:%M:%S" ))
+
+        date_format = "%Y-%m-%d %H:%M:%S"
+        
+        return cls(id=data["id"], 
+                   description=data["description"], 
+                   status=Status.from_label(data["status"]), 
+                   createdAt=datetime.strptime(data["createdAt"], 
+                   date_format), 
+                   updatedAt=None if data["updatedAt"] == "Not yet updated" else datetime.strptime(data["updatedAt"], date_format)
+                   )
