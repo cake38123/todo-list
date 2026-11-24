@@ -10,5 +10,20 @@ def main():
     parser = argparse.ArgumentParser()
     commands = parser.add_subparsers(dest="command", required=True)
 
-    commands.add_parser()
+    commands.parser("add", help="add <task-description>")
 
+    commands.add_parser("list", help="list <order-by>?")
+
+    args = parser.parse_args()
+
+    task_list = TaskList("data.json")
+
+    if args.command == "add":
+        pass
+    elif args.command == "list":
+        task_list.list_tasks()
+    
+
+
+if __name__ == "__main__":
+    main()
