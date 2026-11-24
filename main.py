@@ -1,25 +1,14 @@
-import typer
 from datetime import datetime
 from task import Task
 from task import Status
 from task_list import TaskList
+import argparse
 import json
 
-print("Welcome to To-Do List")
+def main():
+    # argument parser
+    parser = argparse.ArgumentParser()
+    commands = parser.add_subparsers(dest="command", required=True)
 
-tasks = TaskList("data.json")
+    commands.add_parser()
 
-
-def add(description: str):
-    return 0
-
-
-def list():
-
-    return 0
-
-
-
-
-if __name__ == "__main__":
-    return 0
