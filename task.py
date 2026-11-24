@@ -10,6 +10,12 @@ class Status(Enum):
     def get_label(self) -> str:
         return self.name.capitalize().replace("_", " ")
 
+    @classmethod
+    def from_label(cls, label: str):
+        name = label.strip().upper.replace(" ", "_")
+        return cls[name]
+        
+
 
 class Task :
 
@@ -41,3 +47,8 @@ class Task :
     # convert task object into str
     def to_dict(self):
         return {"id": self.id, "description": self.description, "status": self.status.get_label(), "createdAt": self.createdAt.strftime("%Y-%m-%d %H:%M:%S"), "updatedAt": self.updatedAt.strftime("%Y-%m-%d %H:%M:%S") if self.updatedAt else "Not yet updated"}
+
+    # convert dict back to task object
+    @classmethod
+    def from_dict(cls, data):
+        return cls(id=data["id"], description=data["description"], status=data["status"], createdAt=data["createdAt"], updatedAt=data["updatedAt"])
