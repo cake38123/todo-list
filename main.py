@@ -8,7 +8,7 @@ app = typer.Typer()
 
 print("Welcome to To-Do List")
 
-tasks = TaskList()
+tasks = TaskList("data.json")
 
 @app.command()
 def usage():
@@ -36,7 +36,7 @@ def add(description: str):
 @app.command()
 def list():
 
-    list_text = "\n".join([f"Id:{item["id"]}, Description:{item["description"]}, Status: {item["status"]}" for item in data])
+    
 
     typer.echo(list_text)
 
