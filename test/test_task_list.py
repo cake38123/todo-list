@@ -4,33 +4,22 @@ from pathlib import Path
 import datetime
 from task import Status
 
+def test_constructor_starts_empty_when_file_is_missing(tmp_path):
+    task_list = TaskList(tmp_path / "data.json")
 
-# testing reusables
-t = Task(2, "buy groceries", Status.TO_DO, datetime.datetime(2016, 5, 15, 22, 28, 35), None)
-test_path = Path("test.json")
-
-def test_constructor():
-
-    # make sure it doesnt exist
-    assert not test_path.exists(), f"Expected {test_path} not to exist"
-
-    l = TaskList(test_path)
-
-    # check if it has been created
-    assert test_path.exists(), f"Expected {test_path} to be created"
-
-    test_path.unlink(missing_ok=True)
+    assert task_list.size() == 0
 
 
-def test_add_task():
-    
-    l = TaskList(test_path)
+def test_add_task_saves_task(tmp_path):
+    path = tmp_path / "data.json"
+    task_list = TaskList(path)
 
-    before = l.size() 
+    task_list.add_task("Buy groceries")
 
-    l.add_task(t.description)
+    assert task_list.size() == 1
 
-    assert l.size() > before
-
+    reloaded = TaskList(path)
+    assert reloaded.size() == 1
+    assert reloaded.data.description == "Buy groceries"
 
 

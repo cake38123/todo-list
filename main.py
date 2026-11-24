@@ -15,7 +15,7 @@ def main():
 
     args = parser.parse_args()
 
-    task_list = TaskList("test.json")
+    task_list = TaskList("data.json")
 
     if args.command == "add":
         task_list.add_task(args.description)
