@@ -16,6 +16,9 @@ class TaskList:
         # list of task objects from each json dict
         self.data = [Task.from_dict(task_data) for task_data in saved_tasks]
 
+    def __str__(self):
+        return "\n".join(str(task) for task in self.data)
+
     # save method
     def save(self):
 
@@ -23,6 +26,8 @@ class TaskList:
 
         with open(self.filepath, "w", encoding="utf-8") as file:
             json.dump(saved_tasks, file, indent=2)
+
+        
 
 
 
