@@ -47,7 +47,20 @@ class TaskList:
                 return
 
         print("Task not found.")
-         
+
+    def mark_task(self, status_str, id):
+            
+        status = Status.from_label(status_str)
+
+        for task in self.data:
+            if task.id == id:
+                task.status = status
+                self.save()
+                print(f"Task {id} marked as {status}.")
+                return
+
+        print("Task ID not found.")    
+            
     # save method
     def save(self):
 
