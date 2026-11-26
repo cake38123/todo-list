@@ -8,11 +8,11 @@ class Status(Enum):
     DONE = 3
     # turns TO_DO into To do
     def get_label(self) -> str:
-        return self.name.capitalize().replace("_", " ")
+        return self.name.capitalize().replace("_", "-")
 
     @classmethod
     def from_label(cls, label: str):
-        name = label.strip().upper().replace(" ", "_")
+        name = label.strip().upper().replace("-", "_")
         return cls[name]
         
 
