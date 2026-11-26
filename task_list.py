@@ -46,11 +46,8 @@ class TaskList:
                 print(f"Task successfully updated.")
                 return
 
-        print("Task does not exist.")
-        
-
-
-        
+        print("Task not found.")
+         
     # save method
     def save(self):
 
