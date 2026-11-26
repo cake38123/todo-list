@@ -17,6 +17,10 @@ def main():
 
     list_parser = commands.add_parser("list", help="list <order-by>?")
 
+    mark_parser = commands.add_parser("mark", help="mark <status> <id>")
+    mark_parser.add_argument("status", help="status of the task")
+    mark_parser.add_argument("id", type=int, help="id of the task to mark")
+
     args = parser.parse_args()
 
     task_list = TaskList("data.json")
@@ -27,6 +31,8 @@ def main():
         print(str(task_list))
     elif args.command == "update":
         task_list.update_task(args.id, args.description)
+    elif args.command == "mark":
+        task_list.mark_task(args.status, args.id)
     
 
 
