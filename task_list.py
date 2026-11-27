@@ -75,6 +75,18 @@ class TaskList:
 
 
         print(f"Task ID {id} not found.")
+
+    def list_tasks(self, str_status):
+        if str_status is None:
+            for task in self.data:
+                print(str(task))
+        else:
+            status = Status.from_label(str_status)
+
+            for task in self.data:
+                if task.status == status:
+                    print(str(task))
+            
             
     # save method
     def save(self):

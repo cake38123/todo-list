@@ -16,6 +16,12 @@ def main():
     update_parser.add_argument("description", help="new description")
 
     list_parser = commands.add_parser("list", help="list <order-by>?")
+    list_parser.add_argument(
+        "status",
+        nargs="?",
+        choices=["to-do", "in-progress", "done"],
+        help="Filter tasks by status"
+    )
 
     mark_parser = commands.add_parser("mark", help="mark <status> <id>")
     mark_parser.add_argument("status", help="status of the task")
@@ -31,7 +37,7 @@ def main():
     if args.command == "add":
         task_list.add_task(args.description)
     elif args.command == "list":
-        print(str(task_list))
+        task_list.list_tasks(args.status)
     elif args.command == "update":
         task_list.update_task(args.id, args.description)
     elif args.command == "mark":
