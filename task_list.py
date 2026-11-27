@@ -63,7 +63,18 @@ class TaskList:
                 print(f"Task {id} marked as {status_str.lower()}.")
                 return
 
-        print("Task ID not found.")    
+        print(f"Task ID {id} not found.")
+
+    def delete_task(self, id):
+
+        for index, task in enumerate(self.data):
+            if task.id == id:
+                deleted = self.data.pop(index)
+                print(f"Removed task {id} - {deleted.description}.")
+                return
+
+
+        print(f"Task ID {id} not found.")
             
     # save method
     def save(self):
