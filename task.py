@@ -13,6 +13,9 @@ class Status(Enum):
     @classmethod
     def from_label(cls, label: str):
         name = label.strip().upper().replace("-", "_")
+
+        if name not in ["TO_DO", "IN_PROGRESS", "DONE"]:
+            raise ValueError()
         return cls[name]
         
 
