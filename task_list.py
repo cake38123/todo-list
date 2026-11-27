@@ -60,7 +60,7 @@ class TaskList:
             if task.id == id:
                 task.status = status
                 self.save()
-                print(f"Task {id} marked as {status}.")
+                print(f"Task {id} marked as {status_str.lower()}.")
                 return
 
         print("Task ID not found.")    
