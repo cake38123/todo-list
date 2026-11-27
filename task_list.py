@@ -70,7 +70,7 @@ class TaskList:
         for index, task in enumerate(self.data):
             if task.id == id:
                 deleted = self.data.pop(index)
-                print(f"Removed task {id} - {deleted.description}.")
+                print(f"Task {id} has been deleted.")
                 return
 
 

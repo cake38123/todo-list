@@ -80,6 +80,39 @@ def test_mark_task_returns_error_on_invalid_status(tmp_path, capsys):
     assert "Must be a valid status" in output
     assert task_list.data[0].status == Status.TO_DO
 
+def test_delete_task_correctly_deletes(tmp_path, capsys):
+    path = tmp_path / "data.json"
+    task_list = TaskList(path)
+    task_list.add_task("Buy groceries")
+    capsys.readouterr()
+
+    assert task_list.size() == 1 
+
+    task_list.delete_task(1)
+    output = capsys.readouterr().out
+
+    assert "Task 1 has been deleted." in output
+    assert task_list.size() == 0
+
+def test_delete_task_does_nothing_with_unknown_id(tmp_path, capsys):
+    path = tmp_path / "data.json"
+    task_list = TaskList(path)
+    task_list.add_task("Buy groceries")
+
+    assert task_list.size() == 1
+
+    unknown_id = task_list.data[0].id + 1
+    capsys.readouterr()
+
+    task_list.delete_task(unknown_id)
+
+    output = capsys.readouterr().out
+    assert f"Task ID {unknown_id} not found." in output
+    assert task_list.size() == 1
+    assert task_list.data[0].description == "Buy groceries"
+
+    
+
 
 
 
