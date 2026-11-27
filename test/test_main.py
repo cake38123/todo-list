@@ -17,4 +17,4 @@ def test_add_then_list(monkeypatch, tmp_path, capsys):
     output = capsys.readouterr().out
 
     assert "Buy milk" in output
-    assert "To do" in output
+    assert "To-do" in output
