@@ -111,6 +111,107 @@ def test_delete_task_does_nothing_with_unknown_id(tmp_path, capsys):
     assert task_list.size() == 1
     assert task_list.data[0].description == "Buy groceries"
 
+def test_list_task_lists_all_tasks_when_none(tmp_path, capsys):
+    path = tmp_path / "data.json"
+    task_list = TaskList(path)
+
+    # set each task to different status
+    task_list.add_task("Buy groceries")
+    task_list.mark_task("done", 1)
+
+    task_list.add_task("Make dinner")
+    
+    task_list.add_task("Wash dishes")
+    task_list.mark_task("in-progress", 3)
+    
+    assert task_list.size() == 3
+    capsys.readouterr()
+
+    task_list.list_tasks(None)
+
+    output = capsys.readouterr().out
+    assert "ID:1, Description: Buy groceries, Status: Done\n" in output
+    assert "ID:2, Description: Make dinner, Status: To-do\n" in output
+    assert "ID:3, Description: Wash dishes, Status: In-progress\n" in output
+
+def test_list_task_lists_displays_only_to_do_when_to_do(tmp_path, capsys):
+    path = tmp_path / "data.json"
+    task_list = TaskList(path)
+
+    # mark task 1 as done
+    task_list.add_task("Buy groceries")
+    task_list.mark_task("Done", 1)
+
+    # without mark, should be to-do
+    task_list.add_task("Make dinner")
+
+    # mark task 3 as in-progress
+    task_list.add_task("Wash dishes")
+    task_list.mark_task("in-progress", 3)
+    
+    assert task_list.size() == 3
+    capsys.readouterr()
+
+    task_list.list_tasks("to-do")
+
+    output = capsys.readouterr().out
+    assert "ID:1, Description: Buy groceries, Status: Done\n" not in output
+    assert "ID:2, Description: Make dinner, Status: To-do\n" in output
+    assert "ID:3, Description: Wash dishes, Status: In-progress\n" not in output
+
+def test_list_task_lists_displays_only_done_when_done(tmp_path, capsys):
+    path = tmp_path / "data.json"
+    task_list = TaskList(path)
+
+    task_list.add_task("Buy groceries")
+    # mark task 1 as done
+    task_list.mark_task("done", 1)
+
+    # without mark, should be to-do
+    task_list.add_task("Make dinner")
+
+    # mark task 3 as in-progress
+    task_list.add_task("Wash dishes")
+    task_list.mark_task("in-progress", 3)
+    
+    assert task_list.size() == 3
+    capsys.readouterr()
+
+    task_list.list_tasks("done")
+
+    output = capsys.readouterr().out
+    assert "ID:1, Description: Buy groceries, Status: Done\n" in output
+    assert "ID:2, Description: Make dinner, Status: To-do\n" not in output
+    assert "ID:3, Description: Wash dishes, Status: In-progress\n" not in output
+
+def test_list_task_lists_displays_only_in_progress_when_in_progress(tmp_path, capsys):
+    path = tmp_path / "data.json"
+    task_list = TaskList(path)
+
+    task_list.add_task("Buy groceries")
+    # mark task 1 as done
+    task_list.mark_task("done", 1)
+
+    # without mark, should be to-do
+    task_list.add_task("Make dinner")
+
+    # mark task 3 as in-progress
+    task_list.add_task("Wash dishes")
+    task_list.mark_task("in-progress", 3)
+    
+    assert task_list.size() == 3
+    capsys.readouterr()
+
+    task_list.list_tasks("in-progress")
+
+    output = capsys.readouterr().out
+    assert "ID:1, Description: Buy groceries, Status: Done\n" not in output
+    assert "ID:2, Description: Make dinner, Status: To-do\n" not in output
+    assert "ID:3, Description: Wash dishes, Status: In-progress\n" in output
+
+
+
+
     
 
 
