@@ -48,19 +48,15 @@ class TaskList:
 
         print("Task not found.")
 
-    def mark_task(self, status_str, id):
+    def mark_task(self, str_status, id):
 
-        try:
-            status = Status.from_label(status_str)
-        except ValueError:
-            print("Must be a valid status (to-do, in-progress or done).")
-            return
+        status = Status.from_label(str_status)
 
         for task in self.data:
             if task.id == id:
                 task.status = status
                 self.save()
-                print(f"Task {id} marked as {status_str.lower()}.")
+                print(f"Task {id} marked as {str_status}.")
                 return
 
         print(f"Task ID {id} not found.")

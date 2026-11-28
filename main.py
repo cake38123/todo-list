@@ -26,9 +26,8 @@ def main():
     mark_parser = commands.add_parser("mark", help="mark <status> <id>")
     mark_parser.add_argument(
         "status", 
-        nargs="?",
         choices=["to-do", "in-progress", "done"],
-        help="mark task with status",
+        help="New status for the task",
     )
     mark_parser.add_argument("id", type=int, help="id of the task to mark")
 
